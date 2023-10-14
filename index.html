@@ -21,13 +21,18 @@
       const blockProb = 0.07;
       const app = angular.module("game", []);
 
-      app.controller("game", function($scope) {
-        $scope.steps = 200;
+      app.controller("game", function($scope, $interval) {
+        $scope.steps = 50;
         $scope.width = 3;
+        $scope.start_speed = 200;
+        $scope.isRunning = false;
 
         function createLane() {
           const lane = [];
 
+          for (let i = 0; i < 5; i++) {
+            lane.push('');
+          }
           for (let i = 0; i < $scope.steps; i++) {
             const rnd = Math.random();
             if (rnd < coinProb) {
@@ -44,7 +49,26 @@
 
         $scope.init = function() {
           $scope.lanes = new Array($scope.width).fill().map(createLane);
+          $scope.xpos = 1;
+          $scope.ypos = 0;
+          $scope.speed = $scope.start_speed;
+          $scope.coins = 0;
+          $scope.isRunning = true;
+          $scope.win = false;
         }
+
+        $interval(function() {
+          if ($scope.isRunning) {
+            if ($scope.ypos >= $scope.steps) {
+              console.log("Done");
+              $scope.isRunning = false;
+              $scope.win = true;
+            } else {
+              $scope.ypos += 0.1;
+              $scope.speed += 1;
+            }
+          }
+        }, 100);
 
         $scope.init();
       });
@@ -56,14 +80,22 @@
 
       <div class="road">
         <div ng-repeat="lane in lanes track by $index" class="lane">
-          <div ng-repeat="cell in lane track by $index" class="cell" ng-switch="cell">
+          <div ng-repeat="cell in lane track by $index"
+               class="cell" style="transform: translateY({{ypos * speed}}px)"
+               ng-switch="cell">
             <div ng-switch-when="coin" class="coin"></div>
             <div ng-switch-when="block" class="block"></div>
           </div>
         </div>
       </div>
 
-      <div class="sky"></div>
+      <div class="sky">
+        <div class="coin-counter">Coins: {{coins}}</div>
+      </div>
+      
+      <div ng-show="win" class="message">
+        <div class="win-message">You won!</div>
+      </div>
     </div>
   </body>
 </html>

@@ -6,18 +6,10 @@
     background-color: rgb(98, 54, 25);
 }
 
-.sky {
-    height: 40%;
-    width: 100%;
-    background-color: rgb(95, 158, 226);
-    position: absolute;
-    top: 0;
-}
-
 .road {
     width: 50%;
     margin: auto;
-    transform: perspective(450px) rotate3d(1, 0, 0, 40deg) translateY(0%);
+    transform: perspective(450px) rotate3d(1, 0, 0, 40deg);
     transform-origin: bottom;
     background-color: lightgray;
     display: flex;
@@ -52,4 +44,36 @@
     height: 100%;
     aspect-ratio: 1 / 1;
     background-color: rgb(149, 5, 5);
+}
+
+.sky {
+    position: absolute;
+    top: 0;
+    height: 40%;
+    width: 100%;
+    background-color: rgb(95, 158, 226);
+}
+
+.coin-counter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.message {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.win-message {
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgb(202, 245, 48);
 }
