@@ -1,0 +1,55 @@
+.game {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    background-color: rgb(98, 54, 25);
+}
+
+.sky {
+    height: 40%;
+    width: 100%;
+    background-color: rgb(95, 158, 226);
+    position: absolute;
+    top: 0;
+}
+
+.road {
+    width: 50%;
+    margin: auto;
+    transform: perspective(450px) rotate3d(1, 0, 0, 40deg) translateY(0%);
+    transform-origin: bottom;
+    background-color: lightgray;
+    display: flex;
+}
+
+.lane {
+    height: 100%;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: rgb(51, 50, 50);
+    border: 2px solid white;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.coin {
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: rgb(222, 199, 88);
+}
+
+.block {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: rgb(149, 5, 5);
+}
