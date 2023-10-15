@@ -46,6 +46,16 @@
     background-color: rgb(149, 5, 5);
 }
 
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .sky {
     position: absolute;
     top: 0;
@@ -62,18 +72,15 @@
     font-weight: bold;
 }
 
-.message {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.win-message {
+.end-message {
     font-size: 4rem;
     font-weight: bold;
     color: rgb(202, 245, 48);
+}
+
+.player {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 128px;
 }

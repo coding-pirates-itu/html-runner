@@ -16,67 +16,7 @@
       crossorigin="anonymous"></script>
     <link href="./game.css" rel="stylesheet"/>
 
-    <script>
-      const coinProb = 0.15;
-      const blockProb = 0.07;
-      const app = angular.module("game", []);
-
-      app.controller("game", function($scope, $interval) {
-        $scope.steps = 50;
-        $scope.width = 3;
-        $scope.start_speed = 0.1;
-        $scope.isRunning = false;
-        const init_steps = 5;
-        const speed_incr = 1.01;
-
-        function createLane() {
-          const lane = [];
-
-          for (let i = 0; i < init_steps; i++) {
-            lane.push('');
-          }
-          for (let i = 0; i < $scope.steps; i++) {
-            const rnd = Math.random();
-            if (rnd < coinProb) {
-              lane.push('coin');
-            } else if (rnd - coinProb < blockProb) {
-              lane.push('block');
-            } else {
-              lane.push('');
-            }
-          }
-
-          return lane;
-        }
-
-        $scope.init = function() {
-          $scope.lanes = new Array($scope.width).fill().map(createLane);
-          $scope.xpos = 1;
-          $scope.ypos = 0;
-          $scope.speed = $scope.start_speed;
-          $scope.ytranslate = 0;
-          $scope.coins = 0;
-          $scope.isRunning = true;
-          $scope.win = false;
-        }
-
-        $interval(function() {
-          if ($scope.isRunning) {
-            if ($scope.ypos >= $scope.steps + init_steps) {
-              $scope.isRunning = false;
-              $scope.win = true;
-            } else {
-              $scope.ypos += $scope.speed;
-              const cell = angular.element(document.getElementsByClassName("cell")[0])[0];
-              $scope.ytranslate = $scope.ypos * cell.offsetHeight;
-              $scope.speed *= speed_incr;
-            }
-          }
-        }, 100);
-
-        $scope.init();
-      });
-    </script>
+    <script src="game.js"></script>
   </head>
 
   <body>
@@ -93,12 +33,20 @@
         </div>
       </div>
 
-      <div class="sky">
+      <div class="overlay">
+        <div class="sky"></div>
         <div class="coin-counter">Coins: {{coins}}</div>
+        <div class="player">
+          <div style="transform: translateX({{xorigin + xtranslate}}px)">
+            <img ng-show="characterPos1" src="runner-pos1.png" title="Player"/>
+            <img ng-hide="characterPos1" src="runner-pos2.png" title="Player"/>
+          </div>
+        </div>
       </div>
       
-      <div ng-show="win" class="message">
-        <div class="win-message">You won!</div>
+      <div class="overlay" ng-keypress="keyPressed($event)">
+        <div ng-show="win" class="end-message">You won!</div>
+        <div ng-show="lost" class="end-message">You lost :-(</div>
       </div>
     </div>
   </body>
