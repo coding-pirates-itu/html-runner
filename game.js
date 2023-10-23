@@ -10,6 +10,7 @@ const app = angular.module("game", []);
 
 app.controller("game", function ($scope, $interval) {
     $scope.isRunning = false;
+    $scope.frame_duration = 100;
 
     function createLane() {
         const lane = [];
@@ -50,7 +51,7 @@ app.controller("game", function ($scope, $interval) {
         $scope.ypos = 0;
         $scope.speed = start_speed;
         $scope.ytranslate = 0;
-        $scope.characterPos1 = true;
+        $scope.characterFrame = 0;
         $scope.isRunning = true;
         $scope.win = false;
         $scope.lost = false;
@@ -71,7 +72,7 @@ app.controller("game", function ($scope, $interval) {
                 $scope.xorigin = cell.offsetParent.offsetLeft + cell.offsetWidth / 2 - 64;
                 $scope.xtranslate = $scope.xpos * cell.offsetWidth;
                 // Animate character
-                $scope.characterPos1 = !$scope.characterPos1;
+                $scope.characterFrame = ($scope.characterFrame + 1) % 4;
                 // React on character movement
                 const ypos = Math.floor($scope.ypos + 0.1)
                 const item = $scope.lanes[$scope.xpos][ypos];
@@ -93,7 +94,7 @@ app.controller("game", function ($scope, $interval) {
                 }
             }
         }
-    }, 100);
+    }, $scope.frame_duration);
 
     $scope.init();
     document.addEventListener("keypress", $scope.keyPressed);

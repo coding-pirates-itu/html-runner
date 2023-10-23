@@ -78,9 +78,19 @@
     color: rgb(202, 245, 48);
 }
 
-.player {
+.player-field {
     position: absolute;
     bottom: 0;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.frame-left-padding {
+    width: 32px;
+    height: 128px;
+}
+
+.player-frame {
     height: 128px;
 }
