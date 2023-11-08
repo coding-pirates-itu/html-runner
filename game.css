@@ -1,9 +1,9 @@
-.game {
+.ground {
     height: 100vh;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    background-color: rgb(98, 54, 25);
+    background-color: rgb(38, 97, 14);
 }
 
 .road {
@@ -11,8 +11,9 @@
     margin: auto;
     transform: perspective(450px) rotate3d(1, 0, 0, 40deg);
     transform-origin: bottom;
-    background-color: lightgray;
+    background-color: rgb(211, 211, 211);
     display: flex;
+    padding: 0 1px;
 }
 
 .lane {
@@ -21,7 +22,7 @@
     display: flex;
     flex-direction: column-reverse;
     background-color: rgb(51, 50, 50);
-    border: 2px solid white;
+    margin: 0 1px;
 }
 
 .cell {
