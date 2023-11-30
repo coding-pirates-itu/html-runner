@@ -42,6 +42,18 @@ app.controller("game", function ($scope, $interval) {
         }
     }
 
+    $scope.clickLeft = function() {
+        if ($scope.xpos > 0) {
+            $scope.xpos--;
+        }
+    }
+
+    $scope.clickRight = function() {
+        if ($scope.xpos < nof_lanes - 1) {
+            $scope.xpos++;
+        }
+    }
+
     $scope.init = function () {
         $scope.lanes = new Array(nof_lanes).fill().map(createLane);
         $scope.coins = 0;

@@ -47,9 +47,16 @@
         </div>
       </div>
       
-      <div class="overlay" ng-keypress="keyPressed($event)">
+      <div class="overlay">
         <div ng-show="win" class="end-message">You won!</div>
         <div ng-show="lost" class="end-message">You lost :-(</div>
+      </div>
+      
+      <div class="overlay" ng-keypress="keyPressed($event)">
+        <div class="button-container">
+          <div class="onscreen-button" ng-click="clickLeft()"></div>
+          <div class="onscreen-button" ng-click="clickRight()"></div>
+        </div>
       </div>
     </div>
   </body>

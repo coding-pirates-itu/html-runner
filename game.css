@@ -95,3 +95,16 @@
 .player-frame {
     height: 128px;
 }
+
+.button-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.onscreen-button {
+    width: 50%;
+    height: 100%;
+}
